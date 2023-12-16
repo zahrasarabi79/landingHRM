@@ -1,0 +1,27 @@
+@import "../../public/Fonts/Vazirmatn.css";
+
+body {
+  font-family: "Vazirmatn", sans-serif;
+}
+body::-webkit-scrollbar {
+  display: none;
+}
+div {
+  font-family: "Vazirmatn", sans-serif;
+}
+.scroller {
+  height: 100vh;
+  width: 100%;
+  overflow-y: auto;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
+.scroller div {
+  scroll-snap-align: start;
+  transition: transform 1s ease;
+  scroll-snap-stop: always;
+}
+.scroller::-webkit-scrollbar {
+  display: none;
+}
