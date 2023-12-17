@@ -8,13 +8,15 @@ export interface IconComponentProps {
   size?: string;
   focused?: boolean;
   style?: React.CSSProperties;
+  className?:string
 }
 
-const Icon: FC<IconComponentProps> = ({ pathName, color = "white", size = "24px", focused, style }) => {
+const Icon: FC<IconComponentProps> = ({ className="icon",pathName, color = "white", size = "24px", focused, style }) => {
   const theme = useTheme();
   return (
     <>
       <Box
+      className={className}
         component="div"
         sx={{
           maskImage: `url(/icon/${pathName})`,

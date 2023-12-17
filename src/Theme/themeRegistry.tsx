@@ -20,6 +20,7 @@ const Theme: FC<{ children: ReactNode }> = ({ children }) => {
     palette,
     typography,
     components,
+   
     shape: {
       borderRadius: 12,
     },

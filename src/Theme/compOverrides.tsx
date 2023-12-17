@@ -52,8 +52,10 @@ const components: Components = {
   },
   MuiButton: {
     styleOverrides: {
+      
       root: {
         boxShadow: "none",
+        padding:"0px"
       },
       sizeLarge: {
         fontSize: "15px",
