@@ -6,14 +6,28 @@ import Icon from "../Components/Icon/Icon";
 export interface IThumbSlide {
   slide: ISliderImages;
   index: number;
+  isActive: boolean;
 }
 
-const ThumbSlide: FC<IThumbSlide> = ({ slide, index }) => {
+const ThumbSlide: FC<IThumbSlide> = ({ slide, index, isActive }) => {
   const hoverColor = {
     border: index === 3 ? "1px solid #4CAF50" : "1px solid #aee9ff",
     thumbBox: index === 3 ? "rgba(76, 175, 80, 0.50)" : "rgba(174, 233, 255,0.20)",
     thumbIcon: index === 3 ? "white" : "#aee9ff",
     fontColor: index === 3 ? "#4CAF50" : "#aee9ff",
+  };
+  const activeStyles = isActive && {
+    transition: "opacity 800ms easein",
+    border: hoverColor.border,
+    ".thumb-box": {
+      bgcolor: hoverColor.thumbBox,
+    },
+    ".thumb-icon": {
+      backgroundColor: hoverColor.thumbIcon,
+    },
+    ".thumb-Font-color": {
+      color: hoverColor.fontColor,
+    },
   };
   return (
     <>
@@ -23,37 +37,12 @@ const ThumbSlide: FC<IThumbSlide> = ({ slide, index }) => {
           boxShadow: "0px 2.284px 15.986px 0px rgba(174, 233, 255, 0.25)",
           width: "100%",
           padding: 1,
-          "&:hover": {
-            transition: "opacity 800ms easein",
-            border: hoverColor.border,
-            ".thumb-box": {
-              bgcolor: hoverColor.thumbBox,
-            },
-            ".thumb-icon": {
-              backgroundColor: hoverColor.thumbIcon,
-            },
-            ".thumb-Font-color": {
-              color: hoverColor.fontColor,
-            },
-          },
-          "&:focus": {
-            transition: "opacity 800ms easein",
-            border: hoverColor.border,
-            ".thumb-box": {
-              bgcolor: hoverColor.thumbBox,
-            },
-            ".thumb-icon": {
-              backgroundColor: hoverColor.thumbIcon,
-            },
-            ".thumb-Font-color": {
-              color: hoverColor.fontColor,
-            },
-          },
           height: "100%",
           backgroundImage: `url(${slide.url})`,
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           borderRadius: "12px",
+          ...activeStyles,
         }}
       >
         <Grid container>
@@ -68,14 +57,17 @@ const ThumbSlide: FC<IThumbSlide> = ({ slide, index }) => {
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
-               
               }}
             >
               <Icon className="thumb-icon" pathName={slide.icon} size="20px" color="white" />
             </Box>
           </Grid>
           <Grid item xs={8}>
-            <Typography className="thumb-Font-color" color="#FDFDFD" sx={{ fontSize: "12px", fontWeight: "700", lineHeight: "125%", textAlign: "right" }}>
+            <Typography
+              className="thumb-Font-color"
+              color="#FDFDFD"
+              sx={{ fontSize: "12px", fontWeight: "700", lineHeight: "125%", textAlign: "right" }}
+            >
               {slide.name}
             </Typography>
           </Grid>
